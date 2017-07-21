@@ -179,6 +179,16 @@
   tags:
     - neutron-config
 
+- name: Import uwsgi role
+  import_role:
+    name: uwsgi
+  vars:
+    uwsgi_services: "{{ uwsgi_neutron_services }}"
+    uwsgi_install_method: "{{ neutron_install_method }}"
+  tags:
+    - neutron-config
+    - uwsgi
+
 - import_tasks: service_setup.yml
   vars:
     _service_adminuri_insecure: "{{ keystone_service_adminuri_insecure }}"
